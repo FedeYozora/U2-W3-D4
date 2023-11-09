@@ -169,10 +169,16 @@
             them in a cool way!
           </p>
           <p>
-            <a onclick="loadImages()" href="#" class="btn btn-primary my-2"
+            <a
+              onclick="loadImages(`https://api.pexels.com/v1/search?query=cat`)"
+              href="#"
+              class="btn btn-primary my-2"
               >Load Cat Images</a
             >
-            <a onclick="loadImages2()" href="#" class="btn btn-secondary my-2"
+            <a
+              onclick="loadImages(`https://api.pexels.com/v1/search?query=dog`)"
+              href="#"
+              class="btn btn-secondary my-2"
               >Load Dog Images</a
             >
           </p>
@@ -209,98 +215,8 @@
     ></script>
     <script>
       const imageContainer = document.getElementById("row");
-      const URL = "https://api.pexels.com/v1/search?query=cat";
-      const URL2 = "https://api.pexels.com/v1/search?query=dog";
-      const newURL = "";
 
       function loadImages(url) {
-        document.getElementById("row").innerHTML = "";
-        fetch(URL, {
-          method: "GET",
-          headers: {
-            Authorization:
-              "PgRRHvTxdDoUOFNo4h3li178zkxs79W6PqfdjHTkrvCe3q4uBCZ8ndzO",
-          },
-        })
-          .then(response => response.json())
-          .then(data => {
-            data.photos.forEach(photo => {
-              let card = `<div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                      <img src="${photo.src.original}" style="
-                       height: 22rem;object-fit: cover;">
-                      <div id="image-container"></div>
-                      <div class="card-body">
-                        <h5 class="card-title">${photo.photographer}</h5>
-                        <p class="card-text">
-                          ${photo.alt}
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">
-                              View
-                            </button>
-                            <button type="button" id="delete" class="btn btn-sm btn-outline-secondary">
-                              Hide
-                            </button>
-                          </div>
-                          <small class="text-muted">${photo.id}</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>`;
-              document.getElementById("row").innerHTML += card;
-            });
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      }
-
-      function loadImages2(url) {
-        document.getElementById("row").innerHTML = "";
-        fetch(URL2, {
-          method: "GET",
-          headers: {
-            Authorization:
-              "PgRRHvTxdDoUOFNo4h3li178zkxs79W6PqfdjHTkrvCe3q4uBCZ8ndzO",
-          },
-        })
-          .then(response => response.json())
-          .then(data => {
-            data.photos.forEach(photo => {
-              let card = `<div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                      <img src="${photo.src.original}" style="
-                       height: 22rem;object-fit: cover;">
-                      <div id="image-container"></div>
-                      <div class="card-body">
-                        <h5 class="card-title">${photo.photographer}</h5>
-                        <p class="card-text">
-                          ${photo.alt}
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">
-                              View
-                            </button>
-                            <button type="button" id="delete" class="btn btn-sm btn-outline-secondary">
-                              Hide
-                            </button>
-                          </div>
-                          <small class="text-muted">${photo.id}</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>`;
-              document.getElementById("row").innerHTML += card;
-            });
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      }
-      function loadImages3(url) {
         document.getElementById("row").innerHTML = "";
         fetch(url, {
           method: "GET",
@@ -355,7 +271,7 @@
         let searchBar = document.getElementById("searchInput");
         let searchUrl = `https://api.pexels.com/v1/search?query=${searchInput.value}`;
 
-        loadImages3(searchUrl);
+        loadImages(searchUrl);
       };
     </script>
   </body>
