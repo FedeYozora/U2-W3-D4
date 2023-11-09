@@ -169,10 +169,10 @@
           </p>
           <p>
             <a onclick="loadImages()" href="#" class="btn btn-primary my-2"
-              >Load Images</a
+              >Load Cat Images</a
             >
             <a onclick="loadImages2()" href="#" class="btn btn-secondary my-2"
-              >Load Secondary Images</a
+              >Load Dog Images</a
             >
           </p>
         </div>
@@ -342,6 +342,12 @@
             console.log(error);
           });
       }
+
+      document.addEventListener("click", function (event) {
+        if (event.target.matches("#delete")) {
+          event.target.closest(".col-md-4").remove();
+        }
+      });
 
       form.onsubmit = function (e) {
         e.preventDefault();
